@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WayFinder - Explore the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f7fdf9;
+      color: #1b3a2a;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #2d6a4f;
+    }
+
+    nav a {
+      margin: 0 15px;
+      font-weight: 500;
+      color: #2d6a4f;
+    }
+
+    nav a:hover {
+      color: #1b3a2a;
+    }
+
+    .btn {
+      background-color: #2d6a4f;
+      color: #fff;
+      padding: 10px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: #1b3a2a;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px 50px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero-text h2 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .hero img {
+      max-width: 500px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 60px 0 40px;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2d6a4f;
+    }
+
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 50px 50px 50px;
+    }
+
+    .destination-card {
+      background-color: #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .destination-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .destination-card .content {
+      padding: 15px;
+    }
+
+    .destination-card .content h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .destination-card .content p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .destination-card .price-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .destination-card .price-btn span {
+      font-weight: 600;
+      color: #2d6a4f;
+    }
+
+    .destination-card .price-btn a {
+      background-color: #2d6a4f;
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      padding: 50px;
+      background-color: #e6f4ea;
+      text-align: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .feature-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #2d6a4f;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+    }
+
+    .testimonial-section {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .testimonial-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .testimonial-card {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 300px;
+    }
+
+    .testimonial-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 25px;
+      margin-top: 50px;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: #2d6a4f;
+    }
+
+    @media(max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>WayFinder</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Explore</a>
+      <a href="#">My Trips</a>
+      <a href="#">Profile</a>
+      <a class="btn" href="#">Book Now</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h2>Explore the World</h2>
+      <p>Find the best places to travel and relax yourself. Discover amazing destinations and plan your perfect trip with WayFinder.</p>
+      <a class="btn" href="#">Start Your Journey</a>
+    </div>
+    <img src="https://i.pinimg.com/736x/c1/e9/32/c1e932c86aa09e38e89773bf66f2501b.jpg" alt="Beach">
+  </section>
+
+  <!-- Destinations -->
+  <h2 class="section-title">Discover the World</h2>
+  <div class="destinations">
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" alt="Rome">
+      <div class="content">
+
+        <p>Rome, Italy</p>
+        <div class="price-btn">
+          <span>₹50000</span>
+          <a href="#">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Bali">
+      <div class="content">
+        
+        <p>Bali, Indonesia</p>
+        <div class="price-btn">
+          <span>₹40000</span>
+          <a href="#">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="destination-card">
+      <img src="https://images.unsplash.com/photo-1471623432079-b009d30b6729" alt="New York Central Park">
+      <div class="content">
+       
+        <p>New York, USA</p>
+        <div class="price-btn">
+          <span>₹60000</span>
+          <a href="#">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature-card">
+      <h4>Personalised Trips Planned</h4>
+      <p>Ensures smooth experince and matches user preferences.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Reliable Tour</h4>
+      <p>Trusted tours with verified services and packages.</p>
+    </div>
+    <div class="feature-card">
+      <h4>Friendly Price</h4>
+      <p>Affordable travel plans for every kind of explorer.</p>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testimonial-section">
+    <h2 class="section-title">Our Clients' Words</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jenny Wilson">
+        <p>"Had a experince planning trip with WayFinnder, trip was planned according to the preferences given."</p>
+        <strong>Jenny Wilson</strong><br>
+        <small>Traveler</small>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="John Doe">
+        <p>"Amazing experience with WayFinder. Planning my trip has never been easier!"</p>
+        <strong>John Doe</strong><br>
+        <small>Traveler</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 WayFinder - All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
