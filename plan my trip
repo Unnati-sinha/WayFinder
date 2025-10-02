@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plan New Trip</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #2e7d32;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 350px;
+      background-color: #f9fef9;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 100, 0, 0.15);
+      padding: 30px 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #1b5e20;
+    }
+
+    label {
+      font-size: 14px;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #a5d6a7;
+      background-color: #ffffff;
+      color: #2e7d32;
+      box-sizing: border-box;
+    }
+
+    input::placeholder {
+      color: #81c784;
+    }
+
+    .popular-destinations {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .destination {
+      background-color: #e8f5e9;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid #c8e6c9;
+      transition: background-color 0.3s;
+    }
+
+    .destination:hover {
+      background-color: #c8e6c9;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      flex: 1;
+      margin: 0 5px;
+    }
+
+    .cancel-btn {
+      background-color: #ffffff;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .create-btn {
+      background-color: #2d6a4f;
+      color: white;
+    }
+
+    .create-btn:hover {
+      background-color: #2d6a4f;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Plan New Trip</h2>
+    <form>
+      <label for="destination">Where to?</label>
+      <input type="text" id="destination" placeholder="Enter destination...">
+
+      <label for="start-date">Start Date</label>
+      <input type="date" id="start-date">
+
+      <label for="end-date">End Date</label>
+      <input type="date" id="end-date">
+
+      <label for="travelers">Number of Travelers</label>
+      <select id="travelers">
+        <option>1 Traveler</option>
+        <option>2 Travelers</option>
+        <option>3 Travelers</option>
+        <option>4+ Travelers</option>
+      </select>
+
+      <label for="trip-type">Trip Type</label>
+      <select id="trip-type">
+        <option>Select trip type</option>
+        <option>Leisure</option>
+        <option>Business</option>
+        <option>Adventure</option>
+        <option>Romantic</option>
+      </select>
+
+      <label for="budget">Budget (Optional)</label>
+      <input type="text" id="budget" placeholder="Enter budget...">
+
+      
+
+      <div class="buttons">
+        <button type="button" class="btn cancel-btn">Cancel</button>
+        <button type="submit" class="btn create-btn">Create Trip</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
