@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Destinations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e6f9f2;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: white;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0d8a4d;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #0d8a4d;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #0b703f;
+    }
+
+    .navbar .btn {
+      background: #0d8a4d;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .navbar .btn:hover {
+      background: #0b703f;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-bottom: 30px;
+      overflow: hidden;
+    }
+
+    .banner-overlay {
+      background: rgba(0, 0, 0, 0.3);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .banner h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    /* Search Box */
+    .search-box {
+      display: flex;
+      background: white;
+      border-radius: 30px;
+      padding: 10px 20px;
+      width: 50%;
+      max-width: 500px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      background: #0d8a4d;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .filters button {
+      border: 1px solid #0d8a4d;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: white;
+      color: #0d8a4d;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .filters button.active,
+    .filters button:hover {
+      background: #0d8a4d;
+      color: white;
+    }
+
+    /* Destination Cards */
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 0 40px 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin: 0 0 5px;
+      color: #0d8a4d;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">WayFinder</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#" class="active">Explore</a></li>
+      <li><a href="#">My Trips</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#" class="btn">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Banner 1 -->
+  <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
+    <div class="banner-overlay">
+      <h1>Explore</h1>
+      <div class="search-box">
+        <input type="text" placeholder="Search destinations...">
+        <button>🔍</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner 2 -->
+  <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff');">
+    <div class="banner-overlay">
+      <h1>Top Destinations</h1>
+      <p>Discover breathtaking spots loved by travelers</p>
+    </div>
+  </div>
+
+  <!-- Banner 3 -->
+  <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470');">
+    <div class="banner-overlay">
+      <h1>Adventure Awaits</h1>
+      <p>Plan your next great outdoor escape</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="beach">Beaches</button>
+    <button data-filter="mountain">Mountains</button>
+    <button data-filter="city">Cities</button>
+    <button data-filter="adventure">Adventure</button>
+  </div>
+
+  <!-- Destination Cards -->
+  <div class="destinations">
+    <div class="card" data-category="beach">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Santorini">
+      <div class="card-content">
+        <h3>Santorini</h3>
+        <p>Discover Stunning Sunsets</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="city">
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff" alt="Amalfi Coast">
+      <div class="card-content">
+        <h3>Amalfi Coast</h3>
+        <p>Explore the Italian Riviera</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="mountain adventure">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Banff">
+      <div class="card-content">
+        <h3>Banff</h3>
+        <p>Hike Breathtaking Trails</p>
+      </div>
+    </div>
+
+    <div class="card" data-category="beach adventure">
+      <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98" alt="Bali">
+      <div class="card-content">
+        <h3>Bali</h3>
+        <p>Tropical Paradise</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for Filters -->
+  <script>
+    const filterButtons = document.querySelectorAll('.filters button');
+    const cards = document.querySelectorAll('.card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.filters .active').classList.remove('active');
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        cards.forEach(card => {
+          if (filter === "all" || card.getAttribute('data-category').includes(filter)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
