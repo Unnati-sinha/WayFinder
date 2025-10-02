@@ -1,0 +1,187 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #333;
+  }
+
+  /* Navigation Bar Styling */
+  .nav-bar {
+    background-color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #2e7d32;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: auto;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-links li {
+    font-weight: 600;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: #2e7d32;
+  }
+
+  .book-now {
+    background-color: #2e7d32;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+  }
+
+  .book-now:hover {
+    background-color: #145a1b;
+  }
+
+  main {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Trips row styling */
+  .trip-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+  }
+
+  .trip-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .trip-container::-webkit-scrollbar-thumb {
+    background-color: #2e7d32;
+    border-radius: 10px;
+  }
+
+  .trip-card {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .trip-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .trip-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    color: white;
+  }
+
+  .upcoming {
+    background-color: #2e7d32;
+  }
+
+  .completed {
+    background-color: #757575;
+  }
+
+  .trip-dates {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #555;
+  }
+
+  .trip-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .trip-buttons button {
+    flex: 1;
+    padding: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .view-btn {
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+
+  .edit-btn {
+    background-color: #2e7d32;
+    color: white;
+  }
+
+  .plan-new {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.7rem;
+    background-color: #1b5e20;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  .plan-new:hover {
+    background-color: #145a1b;
+  }
+
+  .trip-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }

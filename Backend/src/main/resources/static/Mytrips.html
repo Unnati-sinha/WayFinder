@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WayFinder - My Trips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    
+  </style>
+  <link rel="stylesheet" href="/Mytrips.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <div class="logo">WayFinder</div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/explore">Explore</a></li>
+        <li><a href="/mytrips" class="active">My Trips</a></li>
+        <li><a href="/profile">Profile</a></li>
+      </ul>
+      <button class="book-now" onclick="window.location.href='/explore'">Book Now</button>
+    </div>
+  </div>
+  <!-- Main Content -->
+  <main>
+    <h1>My Trips</h1>
+
+    <div class="trip-container">
+      <!-- Upcoming Trips First -->
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Uttrakhand</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/72/5c/ae/725cae8966554d6a02bae5e30819be96.jpg" class="trip-image" />
+        <div class="trip-dates">Dec 1-8</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Switzerland</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/ed/09/45/ed0945bee594d5eda724b01451e5b43a.jpg" class="trip-image" />
+        <div class="trip-dates">Apr 10-20</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">kerala</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/e7/df/eb/e7dfeb6868b19316570c070032df54ba.jpg" class="trip-image" />
+        <div class="trip-dates">May 1-7</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Ladakh</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/aa/34/96/aa349645bd5ed4584a1e5dbbd0a7fbf6.jpg" class="trip-image" />
+        <div class="trip-dates">Nov 1-6</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Santorini</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/b3/93/81/b3938122aaad4a58428d6fb1b6b6647d.jpg" class="trip-image" />
+        <div class="trip-dates">Dec 10-15</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Sydney</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/1b/b2/5a/1bb25a115df052348a95c34a78ab27c9.jpg" class="trip-image" />
+        <div class="trip-dates">Jan 2-10</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <!-- Completed Trips After -->
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Bali</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/6d/51/fa/6d51fa90807d982f6ded222a04e3558f.jpg" class="trip-image" />
+        <div class="trip-dates">Jan 20-30</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Paris Weekend</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/cc/94/27/cc9427434fb5eebca69a5bcc53b3eada.jpg" class="trip-image" />
+        <div class="trip-dates">Mar 15-18</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Venice</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/8f/5d/fe/8f5dfe51ab58a20924917e180a386749.jpg" class="trip-image" />
+        <div class="trip-dates">Feb 5-12</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Maldives</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/0e/36/86/0e36863eaa8d6e9bd79a979dab5b3974.jpg" class="trip-image" />
+        <div class="trip-dates">Aug 15-20</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="plan-new">+ Plan New Trip</button>
+  </main>
+</body>
+</html>
