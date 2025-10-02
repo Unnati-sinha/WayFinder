@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WayFinder - My Trips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    /* Navigation Bar Styling */
+    .nav-bar {
+      background-color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #2e7d32;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-left: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links li {
+      font-weight: 600;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #2e7d32;
+    }
+
+    .book-now {
+      background-color: #2e7d32;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+    }
+
+    .book-now:hover {
+      background-color: #145a1b;
+    }
+
+    main {
+      max-width: 100%;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Trips row styling */
+    .trip-container {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+    }
+
+    .trip-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .trip-container::-webkit-scrollbar-thumb {
+      background-color: #2e7d32;
+      border-radius: 10px;
+    }
+
+    .trip-card {
+      min-width: 250px;
+      max-width: 250px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .trip-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .trip-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .status {
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      color: white;
+    }
+
+    .upcoming {
+      background-color: #2e7d32;
+    }
+
+    .completed {
+      background-color: #757575;
+    }
+
+    .trip-dates {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .trip-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .trip-buttons button {
+      flex: 1;
+      padding: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .view-btn {
+      background-color: white;
+      border: 1px solid #ccc;
+      color: #333;
+    }
+
+    .edit-btn {
+      background-color: #2e7d32;
+      color: white;
+    }
+
+    .plan-new {
+      display: block;
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      background-color: #1b5e20;
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .plan-new:hover {
+      background-color: #145a1b;
+    }
+
+    .trip-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <div class="logo">WayFinder</div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">My Trips</a></li>
+        <li><a href="#">Profile</a></li>
+      </ul>
+      <button class="book-now">Book Now</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <h1>My Trips</h1>
+
+    <div class="trip-container">
+      <!-- Upcoming Trips First -->
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Uttrakhand</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/72/5c/ae/725cae8966554d6a02bae5e30819be96.jpg" class="trip-image" />
+        <div class="trip-dates">Dec 1-8</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Switzerland</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/ed/09/45/ed0945bee594d5eda724b01451e5b43a.jpg" class="trip-image" />
+        <div class="trip-dates">Apr 10-20</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">kerala</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/e7/df/eb/e7dfeb6868b19316570c070032df54ba.jpg" class="trip-image" />
+        <div class="trip-dates">May 1-7</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Ladakh</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/aa/34/96/aa349645bd5ed4584a1e5dbbd0a7fbf6.jpg" class="trip-image" />
+        <div class="trip-dates">Nov 1-6</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Santorini</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/b3/93/81/b3938122aaad4a58428d6fb1b6b6647d.jpg" class="trip-image" />
+        <div class="trip-dates">Dec 10-15</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Sydney</span>
+          <span class="status upcoming">Upcoming</span>
+        </div>
+        <img src="https://i.pinimg.com/736x/1b/b2/5a/1bb25a115df052348a95c34a78ab27c9.jpg" class="trip-image" />
+        <div class="trip-dates">Jan 2-10</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">Edit Trip</button>
+        </div>
+      </div>
+
+      <!-- Completed Trips After -->
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Bali</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/6d/51/fa/6d51fa90807d982f6ded222a04e3558f.jpg" class="trip-image" />
+        <div class="trip-dates">Jan 20-30</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Paris Weekend</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/cc/94/27/cc9427434fb5eebca69a5bcc53b3eada.jpg" class="trip-image" />
+        <div class="trip-dates">Mar 15-18</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Venice</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/8f/5d/fe/8f5dfe51ab58a20924917e180a386749.jpg" class="trip-image" />
+        <div class="trip-dates">Feb 5-12</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+
+      <div class="trip-card">
+        <div class="trip-card-header">
+          <span class="trip-name">Maldives</span>
+          <span class="status completed">Completed</span>
+        </div>
+        <img src="https://i.pinimg.com/1200x/0e/36/86/0e36863eaa8d6e9bd79a979dab5b3974.jpg" class="trip-image" />
+        <div class="trip-dates">Aug 15-20</div>
+        <div class="trip-buttons">
+          <button class="view-btn">View Details</button>
+          <button class="edit-btn">View Details</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="plan-new">+ Plan New Trip</button>
+  </main>
+</body>
+</html>
