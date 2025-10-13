@@ -1,0 +1,103 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup script, version 3.2.0
+#
+# Required ENV vars:
+# ------------------
+#   JAVA_HOME - location of a JDK home dir
+#
+# Optional ENV vars
+# -----------------
+#   MAVEN_OPTS - parameters passed to the Java VM when running Maven
+#     e.g. to debug Maven itself, use
+#       export MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+#   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
+# ----------------------------------------------------------------------------
+
+# Begin all REM lines with '@' in case MAVEN_BATCH_ECHO is 'on'
+echo $0
+
+# set title of command window
+title="$0"
+
+# enable echoing by setting MAVEN_BATCH_ECHO to 'on'
+if [ "$MAVEN_BATCH_ECHO" = "on" ]; then echo $MAVEN_BATCH_ECHO; fi
+
+# set %HOME% to equivalent of $HOME
+if [ -z "$HOME" ]; then HOME="$(cd ~ && pwd)"; fi
+
+# Execute a user defined script before this one
+if [ -n "$MAVEN_SKIP_RC" ]; then
+  if [ -f "$HOME/mavenrc_pre.sh" ]; then
+    . "$HOME/mavenrc_pre.sh"
+  fi
+  if [ -f "$HOME/mavenrc_pre.cmd" ]; then
+    . "$HOME/mavenrc_pre.cmd"
+  fi
+fi
+
+# Check that MAVEN_CMD_LINE_ARGS is set. If not, set it to an empty string.
+if [ -z "$MAVEN_CMD_LINE_ARGS" ]; then MAVEN_CMD_LINE_ARGS=""; fi
+
+# Check that MAVEN_CONFIG is set. If not, set it to the default value.
+if [ -z "$MAVEN_CONFIG" ]; then MAVEN_CONFIG="$HOME/.m2"; fi
+
+# Check that M2_HOME is set. If not, set it to the default value.
+if [ -z "$M2_HOME" ]; then M2_HOME="$MAVEN_HOME"; fi
+
+# Check that MAVEN_HOME is set. If not, set it to the default value.
+if [ -z "$MAVEN_HOME" ]; then MAVEN_HOME="$MVND_HOME"; fi
+
+# Check that MVND_HOME is set. If not, set it to the default value.
+if [ -z "$MVND_HOME" ]; then MVND_HOME="$M2_HOME"; fi
+
+# Check that MAVEN_HOME is set. If not, set it to the default value.
+if [ -z "$MAVEN_HOME" ]; then MAVEN_HOME="$M2_HOME"; fi
+
+# Check that MVND_HOME is set. If not, set it to the default value.
+if [ -z "$MVND_HOME" ]; then MVND_HOME="$MAVEN_HOME"; fi
+
+# Check that JAVA_HOME is set. If not, try to find it.
+if [ -z "$JAVA_HOME" ]; then
+  if [ -x "$(command -v java)" ]; then
+    export JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(which java)")")")"
+  else
+    echo "Warning: JAVA_HOME environment variable is not set."
+  fi
+fi
+
+# sets MAVEN_PROJECTBASEDIR to the parent directory of the script
+MAVEN_PROJECTBASEDIR="$(cd "$(dirname "$0")" && pwd)"; export MAVEN_PROJECTBASEDIR
+
+if [ ! -f "$MAVEN_PROJECTBASEDIR/mvnw.sh" ]; then
+  if [ "$MVNW_VERBOSE" = "true" ]; then echo "$MAVEN_PROJECTBASEDIR/mvnw.sh does not exist"; fi
+  exit 1
+fi
+
+MAVEN_OPTS="$(echo "$MAVEN_OPTS" | sed 's/-Dmaven.home=/-Dmaven.home="'"$MVND_HOME"'"/g')"
+MAVEN_OPTS="$(echo "$MAVEN_OPTS" | sed 's/-Dmaven.repo.local=/-Dmaven.repo.local="'"$MAVEN_CONFIG"'"/g')"
+MAVEN_OPTS="$(echo "$MAVEN_OPTS" | sed 's/-Dmaven.multiModuleProjectDirectory=/-Dmaven.multiModuleProjectDirectory="'"$MAVEN_PROJECTBASEDIR"'"/g')"
+
+WRAPPER_JAR="$MAVEN_PROJECTBASEDIR/mvnw.jar"
+WRAPPER_LAUNCHER="org.apache.maven.wrapper.MavenWrapperMain"
+
+exec "$JAVACMD" $MAVEN_OPTS -classpath "$WRAPPER_JAR" $WRAPPER_LAUNCHER $MAVEN_CMD_LINE_ARGS

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore Destinations</title>
-  <link rel="stylesheet" href="Explore.css">
+  <title>ExploreDestinations</title>
+  <link href="/Explore.css" rel="stylesheet">
 </head>
 <body>
 
@@ -12,15 +12,13 @@
   <nav class="navbar">
     <div class="logo">WayFinder</div>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#" class="active">Explore</a></li>
-      <li><a href="#">My Trips</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#" class="btn">Book Now</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/explore" class="active">Explore</a></li>
+      <li><a href="/mytrips">My Trips</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/explore" class="btn">Book Now</a></li>
     </ul>
   </nav>
-
-  <!-- Banner 1 -->
   <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
     <div class="banner-overlay">
       <h1>Explore</h1>
@@ -112,6 +110,11 @@
         });
       });
     });
+
+    // Function to handle location card clicks
+    function viewLocationDetails(locationName) {
+      window.location.href = `/location?location=${encodeURIComponent(locationName)}`;
+    }
   </script>
 
 </body>

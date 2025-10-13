@@ -1,112 +1,213 @@
 # WayFinder - Travel Planning Application
 
-WayFinder is a web-based travel planning application that helps users explore destinations, plan trips, and manage their travel itineraries in one place.
+WayFinder is a modern travel planning application that allows users to explore destinations, create detailed trip plans, and generate AI-powered travel routes using Google's Gemini API.
 
 ## Features
 
-- Browse and search travel destinations
-- Plan and manage trips
-- User profile management
-- Responsive design for all devices
+### 🗺️ Destination Exploration
+- Browse popular travel destinations with beautiful imagery
+- Filter destinations by category (Beach, Mountain, City, Adventure)
+- Click on any destination card to view detailed information
 
-## Prerequisites
+### 📋 Detailed Location Pages
+- **Location Details**: Complete information about each destination
+- **Image Gallery**: Multiple high-quality images with thumbnail navigation
+- **Price Information**: Cost per person estimates
+- **Places to Visit**: Curated list of must-see attractions
+- **Travel Tips**: Practical advice for travelers
+- **Weather Information**: Current weather and best time to visit
 
+### 🎯 Trip Management
+- **Add to My Trips**: Save destinations for planning
+- **Local Storage**: Trip data persists between sessions
+- **Trip Status**: Mark trips as upcoming, completed, or cancelled
+- **Trip Statistics**: Track total, upcoming, and completed trips
+
+### 🤖 AI-Powered Route Generation
+- **Gemini API Integration**: Uses Google's Gemini Flash 2.5 model
+- **Smart Itineraries**: Generates 7-day detailed travel plans
+- **Daily Breakdown**: Day-by-day activities and recommendations
+- **Cost Estimates**: Budget planning for each day
+- **Local Tips**: Cultural insights and practical advice
+
+## Technology Stack
+
+### Frontend
+- **HTML5**: Semantic markup with responsive design
+- **CSS3**: Modern styling with Flexbox and Grid
+- **Vanilla JavaScript**: Clean, dependency-free implementation
+- **Local Storage**: Client-side data persistence
+
+### Backend
+- **Spring Boot**: Java-based web framework
+- **REST APIs**: JSON-based API endpoints
+- **Maven**: Dependency management
+- **Gemini API**: Google AI integration
+
+## Setup Instructions
+
+### Prerequisites
 - Java 17 or higher
-- Maven 3.6.3 or higher (for Maven builds)
-- Node.js and npm (for frontend development, if applicable)
+- Maven 3.6+
+- Google Gemini API key
 
-## Getting Started
+### Backend Setup
 
-### Using IDE (IntelliJ IDEA / Eclipse / VS Code)
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. **Open the project** in your preferred IDE:
-   - For IntelliJ: `File` > `Open` > Select the project folder
-   - For Eclipse: `File` > `Import` > `Maven` > `Existing Maven Projects`
-   - For VS Code: Open the project folder and install recommended extensions
-
-3. **Run the application**
-   - Locate the main class: `WayFinderApplication.java`
-   - Right-click and select `Run 'WayFinderApplication'`
-   - The application will start on `http://localhost:8080`
-
-### Using Maven
-
-1. **Navigate to the project directory**
+1. **Navigate to Backend Directory**
    ```bash
    cd Backend
    ```
 
-2. **Build the project**
+2. **Configure Gemini API Key**
+   - Open `src/main/resources/application.properties`
+   - Replace `YOUR_GEMINI_API_KEY_HERE` with your actual Gemini API key
+   - Get your API key from [Google AI Studio](https://aistudio.google.com/)
+
+3. **Install Dependencies**
    ```bash
-   mvn clean install
+   mvnd clean install
    ```
 
-3. **Run the application**
+4. **Run the Application**
    ```bash
-   mvn spring-boot:run
+   mvnd spring-boot:run
    ```
 
-4. Access the application at `http://localhost:8080`
+The backend server will start on `http://localhost:8080`
 
-### Using Docker (if configured)
+### Frontend Setup
 
-1. **Build the Docker image**
-   ```bash
-   docker build -t wayfinder .
-   ```
+The frontend consists of static HTML, CSS, and JavaScript files that are served by the Spring Boot backend. No additional setup is required for the frontend.
 
-2. **Run the container**
-   ```bash
-   docker run -p 8080:8080 wayfinder
-   ```
+## How to Use
 
-3. Access the application at `http://localhost:8080`
+### 1. Explore Destinations
+- Visit `http://localhost:8080/explore`
+- Browse through destination cards
+- Use filter buttons to narrow down by category
+- Click any destination card to view details
 
-## Project Structure
+### 2. View Location Details
+- Click on any destination card from the Explore page
+- View comprehensive information including:
+  - Image gallery with multiple photos
+  - Price per person estimates
+  - Places to visit with descriptions
+  - Travel tips and recommendations
+  - Weather information
+
+### 3. Add to My Trips
+- From the location details page, click "➕ Add to My Trips"
+- The destination will be saved to your trip list
+- View saved trips on `http://localhost:8080/mytrips`
+
+### 4. Generate Travel Routes
+- After adding a destination to your trips, the system will automatically generate a detailed 7-day itinerary
+- The AI-powered route includes:
+  - Daily activity breakdown
+  - Recommended places to visit
+  - Transportation suggestions
+  - Cost estimates
+  - Local tips and cultural insights
+
+### 5. Manage Your Trips
+- Visit `http://localhost:8080/mytrips` to view all saved trips
+- See trip status (upcoming/completed)
+- Click "View Details" to see the generated route
+- Remove trips when no longer needed
+
+## API Endpoints
+
+### Generate Route
+- **URL**: `POST /api/generate-route`
+- **Request Body**:
+  ```json
+  {
+    "location": "Santorini"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "route": "Generated 7-day itinerary...",
+    "timestamp": "2024-01-01T00:00:00Z"
+  }
+  ```
+
+## File Structure
 
 ```
 WayFinder/
-├── Backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/wayfinder/Backend/
-│   │   │   │   ├── controller/    # Controllers
-│   │   │   │   ├── model/         # Data models
-│   │   │   │   ├── repository/    # Data access
-│   │   │   │   └── service/       # Business logic
-│   │   │   └── resources/
-│   │   │       └── static/        # Frontend files (HTML, CSS, JS)
-│   │   └── test/                  # Test files
-│   └── pom.xml                    # Maven configuration
-└── README.md                      # This file
+├── Backend/                    # Spring Boot application
+│   ├── src/main/java/...      # Java source files
+│   ├── src/main/resources/    # Configuration files
+│   └── pom.xml               # Maven dependencies
+├── location-details.html      # Location detail pages
+├── location-details.css       # Styling for details
+├── locations.js              # Location data and utilities
+├── trip-manager.js           # Trip management logic
+├── Explore.html              # Main exploration page
+├── Explore.css               # Exploration page styles
+├── Mytrips.html              # My trips page
+├── Mytrips.css               # Trip management styles
+└── README.md                 # This file
 ```
 
-## Configuration
+## Development Notes
 
-Configuration files are located in `src/main/resources/`:
-- `application.properties` - Main configuration file
+### Adding New Destinations
+1. Add location data to `locations.js`
+2. Update the Explore.html cards to include the new destination
+3. Ensure all required fields are provided (images, prices, places, etc.)
 
-## Built With
+### Customizing AI Prompts
+- Modify the `createRoutePrompt()` method in `RouteController.java`
+- Adjust the prompt to generate different types of itineraries
+- Experiment with different Gemini models for varied results
 
-- [Spring Boot](https://spring.io/projects/spring-boot) - Backend framework
-- [Maven](https://maven.apache.org/) - Dependency Management
-- [HTML/CSS/JavaScript](https://developer.mozilla.org/en-US/docs/Web) - Frontend
+### Styling
+- All CSS files use modern CSS features (Grid, Flexbox, CSS Variables)
+- Responsive design works on mobile and desktop
+- Easy to customize colors and typography
 
-## Contributing
+## Troubleshooting
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### Common Issues
+
+1. **Gemini API Key Not Working**
+   - Ensure the API key is valid and has proper permissions
+   - Check rate limits and quotas in Google AI Studio
+
+2. **Images Not Loading**
+   - Verify image URLs are accessible
+   - Consider using local image assets for better reliability
+
+3. **Trips Not Persisting**
+   - Check browser console for localStorage errors
+   - Ensure JavaScript is enabled
+
+4. **Backend Not Starting**
+   - Verify Java 17+ is installed
+   - Check Maven installation
+   - Review application logs for errors
+
+## Future Enhancements
+
+- User authentication and profiles
+- Trip sharing and collaboration
+- Real-time weather integration
+- Booking system integration
+- Mobile app development
+- Advanced filtering and search
+- Trip expense tracking
+- Photo upload and sharing
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is for educational purposes. Please ensure compliance with API terms of service for any production use.
+
+## Support
+
+For issues or questions, please check the troubleshooting section or create an issue in the project repository.
 
 

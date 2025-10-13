@@ -110,6 +110,11 @@
         });
       });
     });
+
+    // Function to handle location card clicks
+    function viewLocationDetails(locationName) {
+      window.location.href = `/location?location=${encodeURIComponent(locationName)}`;
+    }
   </script>
 
 </body>

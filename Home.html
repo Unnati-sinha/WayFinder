@@ -6,6 +6,9 @@
   <title>WayFinder - Explore the World</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="Home.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="locations.js"></script>
+  <script src="trip-manager.js"></script>
 </head>
 <body>
 
@@ -34,36 +37,36 @@
   <!-- Destinations -->
   <h2 class="section-title">Discover the World</h2>
   <div class="destinations">
-    <div class="destination-card">
+    <div class="destination-card" onclick="viewLocationDetails('Rome')">
       <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" alt="Rome">
       <div class="content">
 
         <p>Rome, Italy</p>
         <div class="price-btn">
           <span>₹50000</span>
-          <a href="#">View Details</a>
+          <a href="#" onclick="event.stopPropagation(); viewLocationDetails('Rome')">View Details</a>
         </div>
       </div>
     </div>
-    <div class="destination-card">
+    <div class="destination-card" onclick="viewLocationDetails('Bali')">
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Bali">
       <div class="content">
         
         <p>Bali, Indonesia</p>
         <div class="price-btn">
           <span>₹40000</span>
-          <a href="#">View Details</a>
+          <a href="#" onclick="event.stopPropagation(); viewLocationDetails('Bali')">View Details</a>
         </div>
       </div>
     </div>
-    <div class="destination-card">
+    <div class="destination-card" onclick="viewLocationDetails('New York')">
       <img src="https://images.unsplash.com/photo-1471623432079-b009d30b6729" alt="New York Central Park">
       <div class="content">
        
         <p>New York, USA</p>
         <div class="price-btn">
           <span>₹60000</span>
-          <a href="#">View Details</a>
+          <a href="#" onclick="event.stopPropagation(); viewLocationDetails('New York')">View Details</a>
         </div>
       </div>
     </div>
@@ -109,5 +112,34 @@
     <p>&copy; 2025 WayFinder - All rights reserved.</p>
   </footer>
 
+  <script>
+    // Function to handle location card clicks
+    function viewLocationDetails(locationName) {
+      window.location.href = `/location?location=${encodeURIComponent(locationName)}`;
+    }
+
+    // Add click handlers for navigation links
+    document.addEventListener('DOMContentLoaded', function() {
+      // Make navigation links work
+      const navLinks = document.querySelectorAll('header nav a');
+      navLinks.forEach(link => {
+        if (link.textContent.trim() === 'Home') {
+          link.href = '/';
+        } else if (link.textContent.trim() === 'Explore') {
+          link.href = '/explore';
+        } else if (link.textContent.trim() === 'My Trips') {
+          link.href = '/mytrips';
+        } else if (link.textContent.trim() === 'Profile') {
+          link.href = '/profile';
+        }
+      });
+
+      // Make hero button work
+      const heroBtn = document.querySelector('.hero .btn');
+      if (heroBtn) {
+        heroBtn.href = '/explore';
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,9 +1,8 @@
 package com.wayfinder.Backend.controller;
 
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ViewController {
@@ -23,14 +22,14 @@ public class ViewController {
         return "forward:/Mytrips.html";
     }
 
+    // Handle location details with a parameter-based approach
+    @GetMapping("/location")
+    public String locationDetails(@RequestParam String location) {
+        return "forward:/location-details.html";
+    }
+
     @GetMapping("/profile")
     public String profile() {
         return "forward:/Profile.html";
-    }
-
-    @GetMapping(value = "/{filename:.+}.css", produces = "text/css")
-    @ResponseBody
-    public Resource serveCss(@PathVariable String filename) {
-        return new ClassPathResource("static/" + filename + ".css");
     }
 }

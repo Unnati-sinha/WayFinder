@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Location Details - WayFinder</title>
+  <link rel="stylesheet" href="location-details.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="locations.js"></script>
+  <script src="trip-manager.js"></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">WayFinder</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/explore">Explore</a></li>
+      <li><a href="/mytrips">My Trips</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="#" class="btn">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- Back Button -->
+  <div class="back-button">
+    <button onclick="goBack()">&larr; Back to Explore</button>
+  </div>
+
+  <!-- Location Details Container -->
+  <div class="location-container">
+    <div class="location-header">
+      <h1 id="location-name">Loading...</h1>
+      <div class="location-rating">
+        <span class="stars" id="location-rating">★★★★★</span>
+        <span class="rating-text">(4.8/5.0)</span>
+      </div>
+    </div>
+
+    <!-- Main Image Gallery -->
+    <div class="image-gallery">
+      <div class="main-image">
+        <img id="main-image" src="" alt="Main location image">
+      </div>
+      <div class="thumbnail-images">
+        <img id="thumb-1" class="thumbnail active" src="" alt="Thumbnail 1">
+        <img id="thumb-2" class="thumbnail" src="" alt="Thumbnail 2">
+        <img id="thumb-3" class="thumbnail" src="" alt="Thumbnail 3">
+        <img id="thumb-4" class="thumbnail" src="" alt="Thumbnail 4">
+      </div>
+    </div>
+
+    <!-- Quick Info -->
+    <div class="quick-info">
+      <div class="info-card">
+        <h3>💰 Price per Person</h3>
+        <p id="price-per-person" class="price">₹0</p>
+      </div>
+      <div class="info-card">
+        <h3>⏱️ Best Time to Visit</h3>
+        <p id="best-time">Loading...</p>
+      </div>
+      <div class="info-card">
+        <h3>🌡️ Weather</h3>
+        <p id="current-weather">Loading...</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-section">
+      <div class="description">
+        <h2>About This Destination</h2>
+        <p id="location-description">Loading description...</p>
+      </div>
+
+      <div class="places-to-visit">
+        <h2>🏛️ Places to Visit</h2>
+        <div id="places-container" class="places-grid">
+          <!-- Places will be dynamically loaded -->
+        </div>
+      </div>
+
+      <div class="travel-tips">
+        <h2>💡 Travel Tips</h2>
+        <ul id="travel-tips">
+          <!-- Tips will be dynamically loaded -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button id="add-to-trips-btn" class="add-to-trips-btn" onclick="addToTrips()">
+        ➕ Add to My Trips
+      </button>
+      <button class="share-btn" onclick="shareLocation()">
+        📤 Share
+      </button>
+    </div>
+
+    <!-- Route Generation Section (shown after adding to trips) -->
+    <div id="route-section" class="route-section" style="display: none;">
+      <h2>🗺️ Suggested Route</h2>
+      <div class="route-loading" id="route-loading">
+        <p>Generating optimal route...</p>
+      </div>
+      <div id="route-content" class="route-content">
+        <!-- Route will be generated here -->
+      </div>
+      <button onclick="regenerateRoute()" class="regenerate-btn">🔄 Regenerate Route</button>
+    </div>
+  </div>
+
+  <!-- Location Data and JavaScript -->
+  <script src="locations.js"></script>
+  <script src="trip-manager.js"></script>
+  <script>
+    // Get location name from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const locationName = urlParams.get('location');
+
+    if (locationName) {
+      loadLocationDetails(locationName);
+    } else {
+      document.getElementById('location-name').textContent = 'Location not found';
+    }
+
+    function loadLocationDetails(locationName) {
+      const location = locationsData.find(loc => loc.name.toLowerCase() === locationName.toLowerCase());
+
+      if (location) {
+        populateLocationDetails(location);
+      } else {
+        document.getElementById('location-name').textContent = 'Location not found';
+      }
+    }
+
+    function populateLocationDetails(location) {
+      // Basic info
+      document.getElementById('location-name').textContent = location.name;
+      document.getElementById('page-title').textContent = `${location.name} - WayFinder`;
+      document.getElementById('location-description').textContent = location.description;
+      document.getElementById('price-per-person').textContent = location.pricePerPerson;
+      document.getElementById('best-time').textContent = location.bestTimeToVisit;
+      document.getElementById('current-weather').textContent = location.weather;
+
+      // Images
+      document.getElementById('main-image').src = location.images[0];
+      document.getElementById('thumb-1').src = location.images[0];
+      document.getElementById('thumb-2').src = location.images[1] || location.images[0];
+      document.getElementById('thumb-3').src = location.images[2] || location.images[0];
+      document.getElementById('thumb-4').src = location.images[3] || location.images[0];
+
+      // Places to visit
+      const placesContainer = document.getElementById('places-container');
+      placesContainer.innerHTML = '';
+      location.placesToVisit.forEach(place => {
+        const placeCard = document.createElement('div');
+        placeCard.className = 'place-card';
+        placeCard.innerHTML = `
+          <img src="${place.image}" alt="${place.name}">
+          <h4>${place.name}</h4>
+          <p>${place.description}</p>
+        `;
+        placesContainer.appendChild(placeCard);
+      });
+
+      // Travel tips
+      const tipsList = document.getElementById('travel-tips');
+      tipsList.innerHTML = '';
+      location.travelTips.forEach(tip => {
+        const tipItem = document.createElement('li');
+        tipItem.textContent = tip;
+        tipsList.appendChild(tipItem);
+      });
+
+      // Check if already in trips
+      updateAddToTripsButton();
+    }
+
+    function updateAddToTripsButton() {
+      const locationName = document.getElementById('location-name').textContent;
+      const isInTrips = tripManager.isInTrips(locationName);
+
+      const addBtn = document.getElementById('add-to-trips-btn');
+      if (isInTrips) {
+        addBtn.textContent = '✅ Already in My Trips';
+        addBtn.disabled = true;
+        document.getElementById('route-section').style.display = 'block';
+        generateRoute();
+      } else {
+        addBtn.textContent = '➕ Add to My Trips';
+        addBtn.disabled = false;
+        document.getElementById('route-section').style.display = 'none';
+      }
+    }
+
+    function addToTrips() {
+      const locationName = document.getElementById('location-name').textContent;
+      tripManager.addToTrips(locationName);
+      updateAddToTripsButton();
+    }
+
+    async function generateRoute() {
+      const locationName = document.getElementById('location-name').textContent;
+      const routeLoading = document.getElementById('route-loading');
+      const routeContent = document.getElementById('route-content');
+
+      routeLoading.style.display = 'block';
+      routeContent.innerHTML = '';
+
+      try {
+        const response = await axios.post('/api/generate-route', {
+          location: locationName
+        });
+
+        routeLoading.style.display = 'none';
+        routeContent.innerHTML = response.data.route;
+      } catch (error) {
+        routeLoading.style.display = 'none';
+        routeContent.innerHTML = '<p>Error generating route. Please try again.</p>';
+        console.error('Route generation error:', error);
+      }
+    }
+
+    function regenerateRoute() {
+      generateRoute();
+    }
+
+    function goBack() {
+      window.location.href = '/explore';
+    }
+
+    function shareLocation() {
+      if (navigator.share) {
+        navigator.share({
+          title: document.getElementById('location-name').textContent,
+          text: 'Check out this amazing destination!',
+          url: window.location.href
+        });
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    }
+
+    // Thumbnail click handlers
+    document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        document.getElementById('main-image').src = thumb.src;
+      });
+    });
+  </script>
+</body>
+</html>

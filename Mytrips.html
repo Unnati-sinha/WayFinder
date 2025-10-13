@@ -6,6 +6,7 @@
   <title>WayFinder - My Trips</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="Mytrips.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -163,5 +164,118 @@
 
     <button class="plan-new">+ Plan New Trip</button>
   </main>
+
+  <!-- JavaScript Files -->
+  <script src="locations.js"></script>
+  <script src="trip-manager.js"></script>
+  <script>
+    // Initialize trips on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadMyTrips();
+      setupEventListeners();
+    });
+
+    function loadMyTrips() {
+      const trips = tripManager.getAllTrips();
+      const tripContainer = document.querySelector('.trip-container');
+
+      // Clear existing trips (except the "Plan New Trip" button)
+      const planNewBtn = tripContainer.querySelector('.plan-new');
+      tripContainer.innerHTML = '';
+      tripContainer.appendChild(planNewBtn);
+
+      if (trips.length === 0) {
+        showEmptyState();
+        return;
+      }
+
+      // Sort trips: upcoming first, then completed
+      const sortedTrips = trips.sort((a, b) => {
+        if (a.status === 'completed' && b.status !== 'completed') return 1;
+        if (a.status !== 'completed' && b.status === 'completed') return -1;
+        return new Date(a.dateAdded) - new Date(b.dateAdded);
+      });
+
+      sortedTrips.forEach(trip => {
+        const tripCard = createTripCard(trip);
+        tripContainer.insertBefore(tripCard, planNewBtn);
+      });
+    }
+
+    function createTripCard(trip) {
+      const card = document.createElement('div');
+      card.className = 'trip-card';
+      card.innerHTML = `
+        <div class="trip-card-header">
+          <span class="trip-name">${trip.name}</span>
+          <span class="status ${trip.status}">${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</span>
+        </div>
+        <img src="${trip.location.images[0]}" class="trip-image" alt="${trip.name}" />
+        <div class="trip-dates">${new Date(trip.plannedDate).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric'
+        })}</div>
+        <div class="trip-buttons">
+          <button class="view-btn" onclick="viewTripDetails('${trip.id}')">View Details</button>
+          <button class="edit-btn" onclick="editTrip('${trip.id}')">Edit Trip</button>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function showEmptyState() {
+      const tripContainer = document.querySelector('.trip-container');
+      const emptyState = document.createElement('div');
+      emptyState.className = 'empty-state';
+      emptyState.innerHTML = `
+        <h2>No trips planned yet</h2>
+        <p>Start exploring destinations and add them to your trips!</p>
+        <a href="/explore" class="explore-btn">Explore Destinations</a>
+      `;
+
+      // Add styles for empty state
+      Object.assign(emptyState.style, {
+        textAlign: 'center',
+        padding: '4rem 2rem',
+        color: '#64748b'
+      });
+
+      tripContainer.appendChild(emptyState);
+    }
+
+    function setupEventListeners() {
+      // Listen for trip updates
+      window.addEventListener('tripAdded', loadMyTrips);
+      window.addEventListener('tripRemoved', loadMyTrips);
+
+      // Plan new trip button
+      document.querySelector('.plan-new').addEventListener('click', function() {
+        window.location.href = '/explore';
+      });
+    }
+
+    function viewTripDetails(tripId) {
+      // For now, redirect to location details with trip context
+      // In a full implementation, this would show detailed trip info
+      const trips = tripManager.getAllTrips();
+      const trip = trips.find(t => t.id === tripId);
+      if (trip) {
+        window.location.href = `/location-details.html?location=${encodeURIComponent(trip.name)}`;
+      }
+    }
+
+    function editTrip(tripId) {
+      // Placeholder for edit functionality
+      alert('Edit trip functionality coming soon!');
+    }
+
+    // Update trip statistics in header
+    function updateTripStats() {
+      const stats = tripManager.getTripStats();
+      // This could update a stats section if added to the UI
+      console.log('Trip Statistics:', stats);
+    }
+  </script>
 </body>
 </html>
