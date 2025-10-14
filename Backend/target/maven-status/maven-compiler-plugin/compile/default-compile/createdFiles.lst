@@ -2,12 +2,16 @@ com\wayfinder\Backend\controller\AuthController$SignInRequest.class
 com\wayfinder\Backend\controller\AuthController$AuthResponse.class
 com\wayfinder\Backend\controller\AuthController$SignUpRequest.class
 com\wayfinder\Backend\service\AuthService.class
+com\wayfinder\Backend\WayFinderApplication.class
 com\wayfinder\Backend\controller\RouteController$RouteResponse.class
 com\wayfinder\Backend\controller\AuthController$ErrorResponse.class
 com\wayfinder\Backend\model\User.class
 com\wayfinder\Backend\controller\RouteController.class
 com\wayfinder\Backend\controller\RouteController$RouteRequest.class
 com\wayfinder\Backend\config\WebConfig.class
+com\wayfinder\Backend\util\JwtUtil.class
 com\wayfinder\Backend\controller\ViewController.class
+com\wayfinder\Backend\config\JwtAuthenticationFilter.class
 com\wayfinder\Backend\repository\UserRepository.class
+com\wayfinder\Backend\WayFinderApplication$1.class
 com\wayfinder\Backend\controller\AuthController.class

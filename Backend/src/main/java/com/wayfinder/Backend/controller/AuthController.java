@@ -2,6 +2,7 @@ package com.wayfinder.Backend.controller;
 
 import com.wayfinder.Backend.model.User;
 import com.wayfinder.Backend.service.AuthService;
+import com.wayfinder.Backend.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest request) {
         try {
@@ -24,7 +28,9 @@ public class AuthController {
                 request.getLastName()
             );
 
-            return ResponseEntity.ok(new AuthResponse("User registered successfully", user.getId()));
+            String token = jwtUtil.generateToken(user.getEmail());
+
+            return ResponseEntity.ok(new AuthResponse("User registered successfully", user.getId(), token));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
@@ -34,7 +40,9 @@ public class AuthController {
     public ResponseEntity<?> signIn(@RequestBody SignInRequest request) {
         try {
             User user = authService.authenticateUser(request.getEmail(), request.getPassword());
-            return ResponseEntity.ok(new AuthResponse("Login successful", user.getId()));
+            String token = jwtUtil.generateToken(user.getEmail());
+
+            return ResponseEntity.ok(new AuthResponse("Login successful", user.getId(), token));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
         }
@@ -90,14 +98,17 @@ public class AuthController {
     public static class AuthResponse {
         private String message;
         private Long userId;
+        private String token;
 
-        public AuthResponse(String message, Long userId) {
+        public AuthResponse(String message, Long userId, String token) {
             this.message = message;
             this.userId = userId;
+            this.token = token;
         }
 
         public String getMessage() { return message; }
         public Long getUserId() { return userId; }
+        public String getToken() { return token; }
     }
 
     public static class ErrorResponse {

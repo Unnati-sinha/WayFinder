@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="Home.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="auth.js"></script>
   <script src="locations.js"></script>
   <script src="trip-manager.js"></script>
 </head>
@@ -20,7 +21,7 @@
       <a href="#">Explore</a>
       <a href="#">My Trips</a>
       <a href="#">Profile</a>
-      <a class="btn" href="#">Book Now</a>
+      <a class="btn" href="#">Start Your Journey</a>
     </nav>
   </header>
 
@@ -40,7 +41,6 @@
     <div class="destination-card" onclick="viewLocationDetails('Rome')">
       <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" alt="Rome">
       <div class="content">
-
         <p>Rome, Italy</p>
         <div class="price-btn">
           <span>₹50000</span>
@@ -51,7 +51,6 @@
     <div class="destination-card" onclick="viewLocationDetails('Bali')">
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Bali">
       <div class="content">
-        
         <p>Bali, Indonesia</p>
         <div class="price-btn">
           <span>₹40000</span>
@@ -62,7 +61,6 @@
     <div class="destination-card" onclick="viewLocationDetails('New York')">
       <img src="https://images.unsplash.com/photo-1471623432079-b009d30b6729" alt="New York Central Park">
       <div class="content">
-       
         <p>New York, USA</p>
         <div class="price-btn">
           <span>₹60000</span>
@@ -115,29 +113,83 @@
   <script>
     // Function to handle location card clicks
     function viewLocationDetails(locationName) {
-      window.location.href = `/location?location=${encodeURIComponent(locationName)}`;
+      // Check if user is authenticated using localStorage
+      if (AuthManager.isAuthenticated()) {
+        // User is authenticated, navigate directly to location details
+        window.location.href = `/location-details.html?location=${encodeURIComponent(locationName)}`;
+      } else {
+        // User is not authenticated, store the intended destination and redirect to login
+        localStorage.setItem('redirectAfterLogin', `/location-details.html?location=${encodeURIComponent(locationName)}`);
+        window.location.href = 'SignIn.html';
+      }
     }
 
     // Add click handlers for navigation links
     document.addEventListener('DOMContentLoaded', function() {
-      // Make navigation links work
+      // Make navigation links work with authentication
       const navLinks = document.querySelectorAll('header nav a');
       navLinks.forEach(link => {
-        if (link.textContent.trim() === 'Home') {
-          link.href = '/';
-        } else if (link.textContent.trim() === 'Explore') {
-          link.href = '/explore';
-        } else if (link.textContent.trim() === 'My Trips') {
-          link.href = '/mytrips';
-        } else if (link.textContent.trim() === 'Profile') {
-          link.href = '/profile';
+        const linkText = link.textContent.trim();
+        if (linkText === 'Home') {
+          link.href = '#';
+          link.onclick = (e) => {
+            e.preventDefault();
+            if (AuthManager.isAuthenticated()) {
+              window.location.href = '/';
+            } else {
+              localStorage.setItem('redirectAfterLogin', '/');
+              window.location.href = 'SignIn.html';
+            }
+          };
+        } else if (linkText === 'Explore') {
+          link.href = '#';
+          link.onclick = (e) => {
+            e.preventDefault();
+            if (AuthManager.isAuthenticated()) {
+              window.location.href = '/explore';
+            } else {
+              localStorage.setItem('redirectAfterLogin', '/explore');
+              window.location.href = 'SignIn.html';
+            }
+          };
+        } else if (linkText === 'My Trips') {
+          link.href = '#';
+          link.onclick = (e) => {
+            e.preventDefault();
+            if (AuthManager.isAuthenticated()) {
+              window.location.href = '/mytrips';
+            } else {
+              localStorage.setItem('redirectAfterLogin', '/mytrips');
+              window.location.href = 'SignIn.html';
+            }
+          };
+        } else if (linkText === 'Profile') {
+          link.href = '#';
+          link.onclick = (e) => {
+            e.preventDefault();
+            if (AuthManager.isAuthenticated()) {
+              window.location.href = '/profile';
+            } else {
+              localStorage.setItem('redirectAfterLogin', '/profile');
+              window.location.href = 'SignIn.html';
+            }
+          };
         }
       });
 
-      // Make hero button work
+      // Make hero button work with authentication
       const heroBtn = document.querySelector('.hero .btn');
       if (heroBtn) {
-        heroBtn.href = '/explore';
+        heroBtn.href = '#';
+        heroBtn.onclick = (e) => {
+          e.preventDefault();
+          if (AuthManager.isAuthenticated()) {
+            window.location.href = '/explore';
+          } else {
+            localStorage.setItem('redirectAfterLogin', '/explore');
+            window.location.href = 'SignIn.html';
+          }
+        };
       }
     });
   </script>

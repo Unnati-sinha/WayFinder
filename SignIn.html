@@ -49,9 +49,29 @@
         });
 
         alert(response.data.message);
-        if (response.data.userId) {
-          // Redirect to home page after successful login
-          window.location.href = 'Home.html';
+        if (response.data.userId && response.data.token) {
+          // Store token in localStorage
+          localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('userId', response.data.userId);
+
+          // Check if there's a redirect URL from query parameters or localStorage
+          const urlParams = new URLSearchParams(window.location.search);
+          const redirectParam = urlParams.get('redirect');
+          const redirectUrl = redirectParam || localStorage.getItem('redirectAfterLogin');
+
+          if (redirectUrl) {
+            if (redirectParam) {
+              // URL decode the redirect parameter
+              const decodedUrl = decodeURIComponent(redirectParam);
+              window.location.href = decodedUrl;
+            } else {
+              localStorage.removeItem('redirectAfterLogin');
+              window.location.href = redirectUrl;
+            }
+          } else {
+            // Redirect to home page after successful login
+            window.location.href = 'Home.html';
+          }
         }
       } catch (error) {
         alert(error.response?.data?.error || 'Login failed');

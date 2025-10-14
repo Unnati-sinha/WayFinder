@@ -2,7 +2,9 @@ E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\controller\Au
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\service\AuthService.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\controller\RouteController.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\WayFinderApplication.java
+E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\config\JwtAuthenticationFilter.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\config\WebConfig.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\model\User.java
+E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\util\JwtUtil.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\controller\ViewController.java
 E:\CODES\pbl\WayFinder\Backend\src\main\java\com\wayfinder\Backend\repository\UserRepository.java

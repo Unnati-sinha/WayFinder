@@ -2,6 +2,39 @@
 
 WayFinder is a modern travel planning application that allows users to explore destinations, create detailed trip plans, and generate AI-powered travel routes using Google's Gemini API.
 
+## 🚀 Quick Start
+
+### Prerequisites
+- Java 17 or higher
+- Maven (or use the included Maven wrapper)
+
+### Running the Application
+
+1. **Navigate to the Backend directory**:
+   ```bash
+   cd Backend
+   ```
+
+2. **Start the application**:
+   ```bash
+   # Using Maven wrapper (recommended)
+   ./mvnw spring-boot:run
+
+   # Or using system Maven
+   mvn spring-boot:run
+   ```
+
+3. **Access the application**:
+   - Open your browser: `http://localhost:8080`
+   - Login or create an account to access the full application
+
+### 🔐 Authentication Features
+
+- **User Registration**: Create new accounts with email/password
+- **Secure Login**: JWT-based authentication system
+- **Session Management**: Automatic token handling and logout
+- **Protected Routes**: All main features require authentication
+
 ## Features
 
 ### 🗺️ Destination Exploration
