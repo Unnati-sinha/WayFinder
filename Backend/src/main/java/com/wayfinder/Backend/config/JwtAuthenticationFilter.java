@@ -71,13 +71,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
-        if (email != null) {
-            // Set the user email as a request attribute for later use
-            request.setAttribute("authenticatedUser", email);
-            System.out.println("Set authenticatedUser: " + email);
-        } else {
-            System.out.println("No authenticated user found");
+        // For pages that skip JWT validation, set a default authenticated user
+        // This allows the ViewController to proceed without redirecting to SignIn
+        if (email == null) {
+            email = "guest-user";
+            System.out.println("Setting guest user for non-authenticated access");
         }
+        
+        // Set the user email as a request attribute for later use
+        request.setAttribute("authenticatedUser", email);
+        System.out.println("Set authenticatedUser: " + email);
 
         // Continue the filter chain
         filterChain.doFilter(request, response);
@@ -94,6 +97,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                path.startsWith("/SignUp.html") ||
                path.startsWith("/signin") ||
                path.startsWith("/signup") ||
+               path.equals("/explore") ||
+               path.equals("/mytrips") ||
+               path.equals("/profile") ||
+               path.equals("/") ||
                path.endsWith(".css") ||
                path.endsWith(".js") ||
                path.endsWith(".png") ||

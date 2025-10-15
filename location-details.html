@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="page-title">Location Details - WayFinder</title>
   <link rel="stylesheet" href="location-details.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="locations.js"></script>
-  <script src="trip-manager.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/auth.js"></script>
+<script src="locations.js"></script>
+<script src="trip-manager.js"></script>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">WayFinder</div>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/explore">Explore</a></li>
-      <li><a href="/mytrips">My Trips</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="#" class="btn">Book Now</a></li>
+      <li><a href="#" id="nav-home">Home</a></li>
+      <li><a href="#" id="nav-explore">Explore</a></li>
+      <li><a href="#" id="nav-mytrips">My Trips</a></li>
+      <li><a href="#" id="nav-profile">Profile</a></li>
+      <li><button class="btn" data-logout>Logout</button></li>
     </ul>
   </nav>
 
@@ -197,7 +198,15 @@
 
     function addToTrips() {
       const locationName = document.getElementById('location-name').textContent;
-      tripManager.addToTrips(locationName);
+      const location = locationsData.find(loc => loc.name.toLowerCase() === locationName.toLowerCase());
+      const image = location ? location.images[0] : '';
+      
+      if (window.addToMyTrips) {
+        window.addToMyTrips(locationName, image);
+      } else {
+        // Fallback to trip manager if global function not available
+        tripManager.addToTrips(locationName);
+      }
       updateAddToTripsButton();
     }
 
@@ -228,7 +237,12 @@
     }
 
     function goBack() {
-      window.location.href = '/explore';
+      if (AuthManager.isAuthenticated()) {
+        window.location.href = '/explore';
+      } else {
+        localStorage.setItem('redirectAfterLogin', '/explore');
+        window.location.href = 'SignIn.html';
+      }
     }
 
     function shareLocation() {
@@ -252,6 +266,50 @@
         thumb.classList.add('active');
         document.getElementById('main-image').src = thumb.src;
       });
+    });
+
+    // Add click handlers for navigation links
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle navigation links
+      document.getElementById('nav-home').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-explore').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/explore';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/explore');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-mytrips').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/mytrips';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/mytrips');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-profile').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/profile';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/profile');
+          window.location.href = 'SignIn.html';
+        }
+      };
     });
   </script>
 </body>

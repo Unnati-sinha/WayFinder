@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="Mytrips.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/auth.js"></script>
 </head>
 <body>
 
@@ -15,12 +16,12 @@
     <div class="logo">WayFinder</div>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">My Trips</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="#" id="nav-home">Home</a></li>
+        <li><a href="#" id="nav-explore">Explore</a></li>
+        <li><a href="#" id="nav-mytrips">My Trips</a></li>
+        <li><a href="#" id="nav-profile">Profile</a></li>
       </ul>
-      <button class="book-now">Book Now</button>
+      <button class="book-now" data-logout>Logout</button>
     </div>
   </div>
 
@@ -28,254 +29,149 @@
   <main>
     <h1>My Trips</h1>
 
-    <div class="trip-container">
-      <!-- Upcoming Trips First -->
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Uttrakhand</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/736x/72/5c/ae/725cae8966554d6a02bae5e30819be96.jpg" class="trip-image" />
-        <div class="trip-dates">Dec 1-8</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Switzerland</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/ed/09/45/ed0945bee594d5eda724b01451e5b43a.jpg" class="trip-image" />
-        <div class="trip-dates">Apr 10-20</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">kerala</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/736x/e7/df/eb/e7dfeb6868b19316570c070032df54ba.jpg" class="trip-image" />
-        <div class="trip-dates">May 1-7</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Ladakh</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/736x/aa/34/96/aa349645bd5ed4584a1e5dbbd0a7fbf6.jpg" class="trip-image" />
-        <div class="trip-dates">Nov 1-6</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Santorini</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/b3/93/81/b3938122aaad4a58428d6fb1b6b6647d.jpg" class="trip-image" />
-        <div class="trip-dates">Dec 10-15</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Sydney</span>
-          <span class="status upcoming">Upcoming</span>
-        </div>
-        <img src="https://i.pinimg.com/736x/1b/b2/5a/1bb25a115df052348a95c34a78ab27c9.jpg" class="trip-image" />
-        <div class="trip-dates">Jan 2-10</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">Edit Trip</button>
-        </div>
-      </div>
-
-      <!-- Completed Trips After -->
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Bali</span>
-          <span class="status completed">Completed</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/6d/51/fa/6d51fa90807d982f6ded222a04e3558f.jpg" class="trip-image" />
-        <div class="trip-dates">Jan 20-30</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">View Details</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Paris Weekend</span>
-          <span class="status completed">Completed</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/cc/94/27/cc9427434fb5eebca69a5bcc53b3eada.jpg" class="trip-image" />
-        <div class="trip-dates">Mar 15-18</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">View Details</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Venice</span>
-          <span class="status completed">Completed</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/8f/5d/fe/8f5dfe51ab58a20924917e180a386749.jpg" class="trip-image" />
-        <div class="trip-dates">Feb 5-12</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">View Details</button>
-        </div>
-      </div>
-
-      <div class="trip-card">
-        <div class="trip-card-header">
-          <span class="trip-name">Maldives</span>
-          <span class="status completed">Completed</span>
-        </div>
-        <img src="https://i.pinimg.com/1200x/0e/36/86/0e36863eaa8d6e9bd79a979dab5b3974.jpg" class="trip-image" />
-        <div class="trip-dates">Aug 15-20</div>
-        <div class="trip-buttons">
-          <button class="view-btn">View Details</button>
-          <button class="edit-btn">View Details</button>
-        </div>
-      </div>
+    <div class="trip-container" id="tripContainer">
+      <!-- Trips will be loaded dynamically -->
     </div>
 
-    <button class="plan-new">+ Plan New Trip</button>
+    <button class="plan-new" onclick="planNewTrip()">+ Plan New Trip</button>
   </main>
 
   <!-- JavaScript Files -->
   <script src="locations.js"></script>
   <script src="trip-manager.js"></script>
   <script>
-    // Initialize trips on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      loadMyTrips();
-      setupEventListeners();
-    });
-
+    // Load trips from localStorage
     function loadMyTrips() {
-      const trips = tripManager.getAllTrips();
-      const tripContainer = document.querySelector('.trip-container');
-
-      // Clear existing trips (except the "Plan New Trip" button)
-      const planNewBtn = tripContainer.querySelector('.plan-new');
-      tripContainer.innerHTML = '';
-      tripContainer.appendChild(planNewBtn);
+      const trips = JSON.parse(localStorage.getItem('userTrips') || '[]');
+      const container = document.getElementById('tripContainer');
 
       if (trips.length === 0) {
-        showEmptyState();
+        container.innerHTML = '<p class="no-trips">No trips planned yet. <a href="#" onclick="planNewTrip()">Explore destinations</a> to add trips!</p>';
         return;
       }
 
-      // Sort trips: upcoming first, then completed
-      const sortedTrips = trips.sort((a, b) => {
-        if (a.status === 'completed' && b.status !== 'completed') return 1;
-        if (a.status !== 'completed' && b.status === 'completed') return -1;
-        return new Date(a.dateAdded) - new Date(b.dateAdded);
-      });
-
-      sortedTrips.forEach(trip => {
-        const tripCard = createTripCard(trip);
-        tripContainer.insertBefore(tripCard, planNewBtn);
-      });
-    }
-
-    function createTripCard(trip) {
-      const card = document.createElement('div');
-      card.className = 'trip-card';
-      card.innerHTML = `
-        <div class="trip-card-header">
-          <span class="trip-name">${trip.name}</span>
-          <span class="status ${trip.status}">${trip.status.charAt(0).toUpperCase() + trip.status.slice(1)}</span>
+      container.innerHTML = trips.map(trip => `
+        <div class="trip-card">
+          <div class="trip-card-header">
+            <span class="trip-name">${trip.location}</span>
+            <span class="status upcoming">Planned</span>
+          </div>
+          <img src="${trip.image || 'https://via.placeholder.com/300x200'}" class="trip-image" />
+          <div class="trip-dates">${trip.date || 'Date TBD'}</div>
+          <div class="trip-buttons">
+            <button class="view-btn" onclick="viewTripDetails('${trip.location}')"><button class="edit-btn" onclick="editTrip('${trip.location}')"><button class="remove-btn" onclick="removeTrip('${trip.location}')"></div>
         </div>
-        <img src="${trip.location.images[0]}" class="trip-image" alt="${trip.name}" />
-        <div class="trip-dates">${new Date(trip.plannedDate).toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric'
-        })}</div>
-        <div class="trip-buttons">
-          <button class="view-btn" onclick="viewTripDetails('${trip.id}')">View Details</button>
-          <button class="edit-btn" onclick="editTrip('${trip.id}')">Edit Trip</button>
-        </div>
-      `;
-
-      return card;
+      `).join('');
     }
 
-    function showEmptyState() {
-      const tripContainer = document.querySelector('.trip-container');
-      const emptyState = document.createElement('div');
-      emptyState.className = 'empty-state';
-      emptyState.innerHTML = `
-        <h2>No trips planned yet</h2>
-        <p>Start exploring destinations and add them to your trips!</p>
-        <a href="/explore" class="explore-btn">Explore Destinations</a>
-      `;
-
-      // Add styles for empty state
-      Object.assign(emptyState.style, {
-        textAlign: 'center',
-        padding: '4rem 2rem',
-        color: '#64748b'
-      });
-
-      tripContainer.appendChild(emptyState);
-    }
-
-    function setupEventListeners() {
-      // Listen for trip updates
-      window.addEventListener('tripAdded', loadMyTrips);
-      window.addEventListener('tripRemoved', loadMyTrips);
-
-      // Plan new trip button
-      document.querySelector('.plan-new').addEventListener('click', function() {
-        window.location.href = '/explore';
-      });
-    }
-
-    function viewTripDetails(tripId) {
-      // For now, redirect to location details with trip context
-      // In a full implementation, this would show detailed trip info
-      const trips = tripManager.getAllTrips();
-      const trip = trips.find(t => t.id === tripId);
-      if (trip) {
-        window.location.href = `/location-details.html?location=${encodeURIComponent(trip.name)}`;
+    function viewTripDetails(location) {
+      if (AuthManager.isAuthenticated()) {
+        window.location.href = `/location-details.html?location=${encodeURIComponent(location)}`;
+      } else {
+        localStorage.setItem('redirectAfterLogin', `/location-details.html?location=${encodeURIComponent(location)}`);
+        window.location.href = 'SignIn.html';
       }
     }
 
-    function editTrip(tripId) {
+    function editTrip(location) {
       // Placeholder for edit functionality
-      alert('Edit trip functionality coming soon!');
+      alert(`Edit trip functionality for ${location} coming soon!`);
     }
 
-    // Update trip statistics in header
-    function updateTripStats() {
-      const stats = tripManager.getTripStats();
-      // This could update a stats section if added to the UI
-      console.log('Trip Statistics:', stats);
+    function removeTrip(location) {
+      if (confirm(`Remove ${location} from your trips?`)) {
+        const trips = JSON.parse(localStorage.getItem('userTrips') || '[]');
+        const updatedTrips = trips.filter(trip => trip.location !== location);
+        localStorage.setItem('userTrips', JSON.stringify(updatedTrips));
+        loadMyTrips(); // Reload the trips
+      }
     }
+
+    function planNewTrip() {
+      if (AuthManager.isAuthenticated()) {
+        window.location.href = '/explore';
+      } else {
+        localStorage.setItem('redirectAfterLogin', '/explore');
+        window.location.href = 'SignIn.html';
+      }
+    }
+
+    // Add click handlers for navigation links
+    document.addEventListener('DOMContentLoaded', function() {
+      loadMyTrips(); // Load trips on page load
+
+      // Handle navigation links
+      document.getElementById('nav-home').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-explore').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/explore';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/explore');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-mytrips').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          loadMyTrips(); // Refresh trips
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/mytrips');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-profile').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/profile';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/profile');
+          window.location.href = 'SignIn.html';
+        }
+      };
+    });
+
+    // Function to add trip from location details page
+    function addToMyTrips(location, image, date) {
+      const trips = JSON.parse(localStorage.getItem('userTrips') || '[]');
+
+      // Check if trip already exists
+      const existingTrip = trips.find(trip => trip.location === location);
+      if (existingTrip) {
+        alert(`${location} is already in your trips!`);
+        return;
+      }
+
+      // Add new trip
+      trips.push({
+        location: location,
+        image: image,
+        date: date || 'Date TBD',
+        addedDate: new Date().toISOString()
+      });
+
+      localStorage.setItem('userTrips', JSON.stringify(trips));
+      alert(`${location} added to your trips!`);
+
+      // If on MyTrips page, reload to show new trip
+      if (window.location.pathname.includes('mytrips')) {
+        loadMyTrips();
+      }
+    }
+
+    // Make addToMyTrips available globally
+    window.addToMyTrips = addToMyTrips;
   </script>
 </body>
 </html>

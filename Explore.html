@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ExploreDestinations</title>
   <link href="/Explore.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/auth.js"></script>
 </head>
 <body>
 
@@ -12,11 +14,11 @@
   <nav class="navbar">
     <div class="logo">WayFinder</div>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/explore" class="active">Explore</a></li>
-      <li><a href="/mytrips">My Trips</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/explore" class="btn">Book Now</a></li>
+      <li><a href="#" id="nav-home">Home</a></li>
+      <li><a href="#" id="nav-explore" class="active">Explore</a></li>
+      <li><a href="#" id="nav-mytrips">My Trips</a></li>
+      <li><a href="#" id="nav-profile">Profile</a></li>
+      <li><button class="btn" data-logout>Logout</button></li>
     </ul>
   </nav>
   <div class="banner" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
@@ -113,8 +115,62 @@
 
     // Function to handle location card clicks
     function viewLocationDetails(locationName) {
-      window.location.href = `/location?location=${encodeURIComponent(locationName)}`;
+      // Allow guest access to location details
+      window.location.href = `/location-details.html?location=${encodeURIComponent(locationName)}`;
     }
+
+    // Add click handlers for location cards and navigation links
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add click handlers for location cards
+      const locationCards = document.querySelectorAll('.card');
+      locationCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const locationName = card.querySelector('h3').textContent;
+          viewLocationDetails(locationName);
+        });
+      });
+
+      // Handle navigation links
+      document.getElementById('nav-home').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-explore').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/explore';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/explore');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-mytrips').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/mytrips';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/mytrips');
+          window.location.href = 'SignIn.html';
+        }
+      };
+
+      document.getElementById('nav-profile').onclick = (e) => {
+        e.preventDefault();
+        if (AuthManager.isAuthenticated()) {
+          window.location.href = '/profile';
+        } else {
+          localStorage.setItem('redirectAfterLogin', '/profile');
+          window.location.href = 'SignIn.html';
+        }
+      };
+    });
   </script>
 
 </body>
